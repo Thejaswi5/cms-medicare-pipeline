@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: stg_financials
+    description: "Cleaned and standardized financial data"
+    columns:
+      - name: ticker
+        description: "Stock ticker"
+        data_tests:
+          - not_null
+      - name: sector
+        description: "Business sector"
+        data_tests:
+          - not_null
+          - accepted_values:
+              config:
+                severity: error
+              values:
+                - Technology
+                - Financials
+                - Healthcare
+                - Energy
+                - Consumer Staples
+                - Consumer Discretionary
+                - Communication
+      - name: revenue_bn
+        description: "Revenue in billions"
+        data_tests:
+          - not_null
+      - name: record_status
+        description: "Data quality flag"
+        data_tests:
+          - not_null
+          - accepted_values:
+              config:
+                severity: error
+              values:
+                - valid
+
+  - name: mart_company_analysis
+    description: "Final company performance table"
+    columns:
+      - name: ticker
+        description: "Stock ticker"
+        data_tests:
+          - not_null
+      - name: annual_revenue_bn
+        description: "Annual revenue in billions"
+        data_tests:
+          - not_null
+      - name: performance_tier
+        description: "Performance classification"
+        data_tests:
+          - accepted_values:
+              config:
+                severity: error
+              values:
+                - High Performer
+                - Mid Performer
+                - Low Performer

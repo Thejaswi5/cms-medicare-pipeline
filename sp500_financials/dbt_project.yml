@@ -1,8 +1,8 @@
-name: 'cms_medicare'
+name: 'sp500_financials'
 version: '1.0.0'
 config-version: 2
 
-profile: 'cms_medicare'
+profile: 'sp500_financials'
 
 model-paths: ["models"]
 test-paths: ["tests"]
@@ -10,7 +10,7 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 
 models:
-  cms_medicare:
+  sp500_financials:
     staging:
       +materialized: view
     intermediate:
