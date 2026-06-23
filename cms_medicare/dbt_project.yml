@@ -1,0 +1,19 @@
+name: 'cms_medicare'
+version: '1.0.0'
+config-version: 2
+
+profile: 'cms_medicare'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+models:
+  cms_medicare:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

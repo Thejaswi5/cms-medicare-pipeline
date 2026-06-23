@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: stg_financials
+    description: >
+      Cleaned and standardized financial data.
+      One row per company per quarter.
+      Bad records filtered out via record_status flag.
+    columns:
+      - name: ticker
+        description: "Stock ticker symbol. Must never be null."
+        data_tests:
+          - not_null
+      - name: sector
+        description: "Business sector classification"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Technology
+                - Financials
+                - Healthcare
+                - Energy
+                - Consumer Staples
+                - Consumer Discretionary
+                - Communication
+      - name: revenue_bn
+        description: "Quarterly revenue in billions. Must be positive."
+        data_tests:
+          - not_null
+      - name: record_status
+        description: "Data quality flag. Only valid records pass staging."
+        data_tests:
+          - accepted_values:
+              values: ['valid']
+
+  - name: mart_company_analysis
+    description: >
+      Annual company performance summary.
+      Primary table for analyst queries and Power BI dashboards.
+      One row per company per year.
+    columns:
+      - name: ticker
+        description: "Stock ticker. Primary identifier."
+        data_tests:
+          - not_null
+      - name: annual_revenue_bn
+        description: "Sum of quarterly revenues for the year"
+        data_tests:
+          - not_null
+      - name: performance_tier
+        description: "Analyst-facing performance classification"
+        data_tests:
+          - accepted_values:
+              values:
+                - 'High Performer'
+                - 'Mid Performer'
+                - 'Low Performer'

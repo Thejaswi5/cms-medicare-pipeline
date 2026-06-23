@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Raw financial data loaded from generated dataset"
+    tables:
+      - name: financials
+        description: "Quarterly financial data for 10 S&P 500 companies"
+        columns:
+          - name: ticker
+            description: "Stock ticker symbol"
+          - name: company_name
+            description: "Full company name"
+          - name: sector
+            description: "Business sector"
+          - name: period
+            description: "Quarter period e.g. 2021-Q1"
+          - name: revenue_bn
+            description: "Quarterly revenue in billions"
+          - name: net_income_bn
+            description: "Net income in billions"
+          - name: operating_expense_bn
+            description: "Operating expenses in billions"
+          - name: profit_margin_pct
+            description: "Profit margin as percentage"
+          - name: revenue_growth_pct
+            description: "Revenue growth vs prior quarter"
+          - name: total_debt_bn
+            description: "Total debt in billions"
+          - name: eps
+            description: "Earnings per share"
+
